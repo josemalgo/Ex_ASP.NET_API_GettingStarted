@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Employees.Repository
 {
-    public class EmployeeRepository
+    public class EmployeeDbContext
     {
-        private static List<Employee> employees = new List<Employee>()
+        private static List<Employee> _employees = new List<Employee>()
         {
             new Employee() { Id = Guid.NewGuid(), Name = "Jose", Surname = "Alvarez", Position = "Ayudant", Salary = 1200},
             new Employee() { Id = Guid.NewGuid(), Name = "Javier", Surname = "Garcia", Position = "Secretari", Salary = 920},
@@ -18,12 +18,12 @@ namespace Employees.Repository
 
         public List<Employee> GetAllEmployees()
         {
-            return employees;
+            return _employees;
         }
         
         public Employee GetEmployeeById(Guid id)
         {
-            Employee emp = employees.FirstOrDefault(x => x.Id == id);
+            Employee emp = _employees.FirstOrDefault(x => x.Id == id);
             if (emp == null)
             {
                 return null;
@@ -42,7 +42,7 @@ namespace Employees.Repository
             if (entity.Id == default(Guid))
                 entity.Id = Guid.NewGuid();
 
-            if(employees.Find(x => x.Id == entity.Id) != null)
+            if(_employees.Find(x => x.Id == entity.Id) != null)
             {
                 output.IsSuccess = false;
                 output.Messages.Add("The ID already exist!.");
@@ -50,7 +50,7 @@ namespace Employees.Repository
 
             if (output.IsSuccess)
             {
-                employees.Add(entity);
+                _employees.Add(entity);
                 output.ValidatedResult = entity;
             }
             
@@ -64,7 +64,7 @@ namespace Employees.Repository
                 IsSuccess = true,
             };
 
-            if (employees.Find(x => x.Id == id) == null)
+            if (_employees.Find(x => x.Id == id) == null)
             {
                 output.IsSuccess = false;
                 output.Messages.Add("ID not exist");
@@ -72,7 +72,7 @@ namespace Employees.Repository
 
             if (output.IsSuccess)
             {
-                var oldEmployee = employees.FirstOrDefault(x => x.Id == id);
+                var oldEmployee = _employees.FirstOrDefault(x => x.Id == id);
                 oldEmployee.Name = entity.Name;
                 oldEmployee.Surname = entity.Surname;
                 oldEmployee.Position = entity.Position;
@@ -90,7 +90,7 @@ namespace Employees.Repository
                 IsSuccess = true,
             };
 
-            if (employees.Find(x => x.Id == id) == null)
+            if (_employees.Find(x => x.Id == id) == null)
             {
                 output.IsSuccess = false;
                 output.Messages.Add("ID not exist");
@@ -98,8 +98,8 @@ namespace Employees.Repository
 
             if (output.IsSuccess)
             {
-                var employee = employees.FirstOrDefault(x => x.Id == id);
-                employees.Remove(employee);
+                var employee = _employees.FirstOrDefault(x => x.Id == id);
+                _employees.Remove(employee);
             }
 
             return output;

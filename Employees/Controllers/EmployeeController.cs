@@ -18,7 +18,7 @@ namespace Employees.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Employee>> Get()
         {
-            EmployeeRepository repo = new EmployeeRepository();
+            EmployeeDbContext repo = new EmployeeDbContext();
             var allEmployees = repo.GetAllEmployees();
             
             if(allEmployees != null)
@@ -31,7 +31,7 @@ namespace Employees.Controllers
         [HttpGet("{id}")]
         public ActionResult<Employee> Get(Guid id)
         {
-            EmployeeRepository repo = new EmployeeRepository();
+            EmployeeDbContext repo = new EmployeeDbContext();
             var entity = repo.GetEmployeeById(id);
             
             if(entity != null)
@@ -44,7 +44,7 @@ namespace Employees.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] Employee newEmployee)
         {
-            EmployeeRepository repo = new EmployeeRepository();
+            EmployeeDbContext repo = new EmployeeDbContext();
             var output = repo.Create(newEmployee);
             
             if(output.IsSuccess)
@@ -57,7 +57,7 @@ namespace Employees.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(Guid id, [FromBody] Employee employee)
         {
-            EmployeeRepository repo = new EmployeeRepository();
+            EmployeeDbContext repo = new EmployeeDbContext();
             var output = repo.Update(id, employee);
 
             if (output.IsSuccess)
@@ -70,7 +70,7 @@ namespace Employees.Controllers
         [HttpDelete("{id}")]
         public ActionResult<Employee> Delete(Guid id)
         {
-            EmployeeRepository repo = new EmployeeRepository();
+            EmployeeDbContext repo = new EmployeeDbContext();
             var output = repo.Delete(id);
 
             if (output.IsSuccess)
