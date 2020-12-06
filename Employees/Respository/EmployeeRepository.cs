@@ -11,9 +11,9 @@ namespace Employees.Repository
     {
         private static List<Employee> employees = new List<Employee>()
         {
-            new Employee() { Id = Guid.NewGuid(), Name = "Jose", Surname = "Alvarez", Position = "VS", Salary = 1200},
-            new Employee() { Id = Guid.NewGuid(), Name = "Alba", Surname = "Tortras", Position = "Acomodacion", Salary = 920},
-            new Employee() { Id = Guid.NewGuid(), Name = "Helena", Surname = "Font", Position = "Cap de Sala", Salary = 1420}
+            new Employee() { Id = Guid.NewGuid(), Name = "Jose", Surname = "Alvarez", Position = "Ayudant", Salary = 1200},
+            new Employee() { Id = Guid.NewGuid(), Name = "Javier", Surname = "Garcia", Position = "Secretari", Salary = 920},
+            new Employee() { Id = Guid.NewGuid(), Name = "Marc", Surname = "Sanchez", Position = "Director", Salary = 1420}
         };
 
         public List<Employee> GetAllEmployees()
