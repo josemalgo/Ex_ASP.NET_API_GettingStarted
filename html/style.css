@@ -1,0 +1,51 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#employee-data fieldset{
+    margin: 10px;
+    padding: 10px;
+}
+
+#employee-data label{
+    margin: 5px;
+    padding: 5px;
+}
+
+#employee-table{
+    width: 100%;   
+    border-collapse: collapse; 
+    margin:10px;
+    margin-right: 20px;
+}
+
+#employee-table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#employee-table td{
+    padding: 8px;
+}
+
+#employee-table th{
+    background-color: #4CAF50;
+    color: white;
+    text-align: left;
+    padding: 8px;
+}
+
+#div-buttons{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+    margin-right: 60px;
+}
+
+#div-buttons button{
+    margin: 5px;
+}
+
+#employee-table tr :hover{
+    cursor: pointer;
+}

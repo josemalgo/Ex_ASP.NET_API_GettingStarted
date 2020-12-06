@@ -64,7 +64,7 @@ namespace Employees.Repository
                 IsSuccess = true,
             };
 
-            if (employees.Find(x => x.Id == entity.Id) == null)
+            if (employees.Find(x => x.Id == id) == null)
             {
                 output.IsSuccess = false;
                 output.Messages.Add("ID not exist");

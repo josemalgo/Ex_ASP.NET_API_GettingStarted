@@ -1,16 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Employees.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Employees
 {
@@ -26,6 +18,18 @@ namespace Employees
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "MyPolicy",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://127.0.0.1:5500",
+                            "http://localhost:5500")
+                                .WithMethods("PUT", "DELETE", "GET", "POST")
+                                .AllowAnyHeader();
+                    });
+            });
+
             services.AddControllers();
         }
 
@@ -40,6 +44,8 @@ namespace Employees
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
