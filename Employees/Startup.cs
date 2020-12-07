@@ -20,11 +20,10 @@ namespace Employees
         {
             services.AddCors(options =>
             {
-                options.AddPolicy(name: "MyPolicy",
+                options.AddPolicy(name: "EmployeePolicy",
                     builder =>
                     {
-                        builder.WithOrigins("http://127.0.0.1:5500",
-                            "http://localhost:5500")
+                        builder.AllowAnyOrigin()
                                 .WithMethods("PUT", "DELETE", "GET", "POST")
                                 .AllowAnyHeader();
                     });

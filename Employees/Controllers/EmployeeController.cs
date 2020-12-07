@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Employees.Controllers
 {
-    [EnableCors("MyPolicy")]
+    [EnableCors("EmployeePolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class EmployeeController : ControllerBase
